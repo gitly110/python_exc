@@ -1,0 +1,1 @@
+[{"domain": "test.hrhbbx.com", "httpOnly": true, "name": "JSESSIONID", "path": "/", "secure": false, "value": "DD7BF506218777A0D1DAD2A86750862A"}, {"domain": "test.hrhbbx.com", "expiry": 1538016838.011068, "httpOnly": false, "name": "session_user", "path": "/", "secure": false, "value": "\"v27vkRGypKcgcq0GBeyJvkliUP0d83gicrHam23+0yczEpmzbBuzWw==\""}]

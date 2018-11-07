@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://www.cnblogs.com/hanxiaobei/p/6755329.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin">
+<title>Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/bundle-darkgreentrip.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/bundle-darkgreentrip-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/hanxiaobei/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/hanxiaobei/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/hanxiaobei/wlwmanifest.xml">
+<script async="" src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/analytics.js.下载"></script><script type="text/javascript" src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/encoder.js.下载"></script><script src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+<script type="text/javascript">var currentBlogApp = 'hanxiaobei', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/blog-common.js.下载" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/hanxiaobei/"><img id="blogLogo" src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/hanxiaobei/">韩小北</a></h1>
+<h2>每天让自己有点进步。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/hanxiaobei/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E9%9F%A9%E5%B0%8F%E5%8C%97">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/hanxiaobei/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/hanxiaobei/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 70&nbsp; </span>
+<span id="stats_article_count">文章 - 1&nbsp; </span>
+<span id="stats-comment_count">评论 - 0</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/hanxiaobei/p/6755329.html">Selenium基于Python web自动化测试框架 -- PO</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p>关于selenium测试框架首先想到的就是PO模型，简单说下PO模型</p>
+<p><span style="font-size: 15px"><strong>PO模型的概念和理解：</strong></span></p>
+<p>PO就是一个设计思想，将代码以页面为单位进行组织，针对这个页面上的所有信息、相关操作都放到一个类中，从而使具体的测试用例变成了简单的调用和验证操作。</p>
+<p>优点：进行了拆分和分层</p>
+<p>缺点：对于复杂的业务page层变了，case也需要去改动</p>
+<p><span style="font-size: 15px"><strong>PO模型的目录结构：</strong></span></p>
+<p><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/808721-20170424091111209-237653499.png" alt=""></p>
+<p>其中，base_page是login_page、search_page的基础。test_login调用login_page，login_page调用base_page，同理test_search。</p>
+<p><span style="font-size: 15px"><strong>PO代码示例：</strong></span></p>
+<p><span style="font-size: 15px">base_page.py</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">from</span><span style="color: #000000"> selenium.webdriver.support.wait import WebDriverWait
+</span><span style="color: #008080"> 2</span> 
+<span style="color: #008080"> 3</span> <span style="color: #800000">'''
+</span><span style="color: #008080"> 4</span> <span style="color: #000000">这个类主要是完成所有页面的一些公共方法的封装
+</span><span style="color: #008080"> 5</span> <span style="color: #800000">'''
+</span><span style="color: #008080"> 6</span> <span style="color: #0000ff">class</span> Action(<span style="color: #0000ff">object</span><span style="color: #000000">):
+</span><span style="color: #008080"> 7</span> <span style="color: #000000">    #初始化
+</span><span style="color: #008080"> 8</span> <span style="color: #000000">    def __init__(self,se_driver):
+</span><span style="color: #008080"> 9</span>         self.driver =<span style="color: #000000"> se_driver
+</span><span style="color: #008080">10</span> 
+<span style="color: #008080">11</span> <span style="color: #000000">    #定义open方法
+</span><span style="color: #008080">12</span> <span style="color: #000000">    def open(self,url):
+</span><span style="color: #008080">13</span>         self.driver.<span style="color: #0000ff">get</span><span style="color: #000000">(url)
+</span><span style="color: #008080">14</span> <span style="color: #000000">        self.driver.maximize_window()
+</span><span style="color: #008080">15</span> 
+<span style="color: #008080">16</span> <span style="color: #000000">    #重写元素定位的方法
+</span><span style="color: #008080">17</span>     def find_element(self,*<span style="color: #000000">loc):
+</span><span style="color: #008080">18</span>         <span style="color: #0000ff">try</span><span style="color: #000000">:
+</span><span style="color: #008080">19</span>             WebDriverWait(self.driver,<span style="color: #800080">20</span>).until(lambda driver:driver.find_element(*<span style="color: #000000">loc).is_displayed())
+</span><span style="color: #008080">20</span>             <span style="color: #0000ff">return</span> self.driver.find_element(*<span style="color: #000000">loc)
+</span><span style="color: #008080">21</span>         except Exception <span style="color: #0000ff">as</span><span style="color: #000000"> e:
+</span><span style="color: #008080">22</span>             print(<span style="color: #800000">"</span><span style="color: #800000">未找到%s</span><span style="color: #800000">"</span>%<span style="color: #000000">(self,loc))
+</span><span style="color: #008080">23</span> 
+<span style="color: #008080">24</span> <span style="color: #000000">    #定义script方法，用于执行js脚本
+</span><span style="color: #008080">25</span> <span style="color: #000000">    def script(self,src):
+</span><span style="color: #008080">26</span> <span style="color: #000000">        self.driver.execute_script(src)
+</span><span style="color: #008080">27</span> 
+<span style="color: #008080">28</span> <span style="color: #000000">    #重写send_keys方法
+</span><span style="color: #008080">29</span>     def send_keys(self,loc,value,clear_first=True,clik_first=<span style="color: #000000">True):
+</span><span style="color: #008080">30</span>         <span style="color: #0000ff">try</span><span style="color: #000000">:
+</span><span style="color: #008080">31</span>             <span style="color: #0000ff">if</span><span style="color: #000000"> clik_first:
+</span><span style="color: #008080">32</span>                 self.find_element(*<span style="color: #000000">loc).click()
+</span><span style="color: #008080">33</span>             <span style="color: #0000ff">if</span><span style="color: #000000"> clear_first:
+</span><span style="color: #008080">34</span>                 self.find_element(*<span style="color: #000000">loc).clear()
+</span><span style="color: #008080">35</span>                 self.find_element(*<span style="color: #000000">loc).send_keys(value)
+</span><span style="color: #008080">36</span> <span style="color: #000000">        except AttributeError:
+</span><span style="color: #008080">37</span>             print(<span style="color: #800000">"</span><span style="color: #800000">未找到%s</span><span style="color: #800000">"</span>%(self,loc))</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px">login_page.py</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">from</span><span style="color: #000000"> selenium.webdriver.common.by import By
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">from</span><span style="color: #000000"> seleniumframework.PO import base_page
+</span><span style="color: #008080"> 3</span> <span style="color: #000000">import time
+</span><span style="color: #008080"> 4</span> 
+<span style="color: #008080"> 5</span> <span style="color: #0000ff">class</span><span style="color: #000000"> LoginPage(base_page.Action):
+</span><span style="color: #008080"> 6</span>     link_loc = (By.LINK_TEXT,<span style="color: #800000">"</span><span style="color: #800000">登录</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080"> 7</span>     name_loc = (By.ID,<span style="color: #800000">"</span><span style="color: #800000">TANGRAM__PSP_8__userName</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080"> 8</span>     password_loc = (By.ID,<span style="color: #800000">"</span><span style="color: #800000">TANGRAM__PSP_8__password</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080"> 9</span>     submit_loc = (By.ID,<span style="color: #800000">"</span><span style="color: #800000">TANGRAM__PSP_8__submit</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080">10</span> 
+<span style="color: #008080">11</span>     username_top = (By.LINK_TEXT,<span style="color: #800000">"</span><span style="color: #800000">hanxiaobei</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080">12</span> 
+<span style="color: #008080">13</span> 
+<span style="color: #008080">14</span> <span style="color: #000000">    def click_link(self):
+</span><span style="color: #008080">15</span>         self.find_element(*<span style="color: #000000">self.link_loc).click()
+</span><span style="color: #008080">16</span>         time.sleep(<span style="color: #800080">3</span><span style="color: #000000">)           #等待3秒，等待登录弹窗加载完成
+</span><span style="color: #008080">17</span> 
+<span style="color: #008080">18</span> <span style="color: #000000">    def run_case(self,value1,value2):
+</span><span style="color: #008080">19</span>         self.find_element(*<span style="color: #000000">self.name_loc).send_keys(value1)
+</span><span style="color: #008080">20</span>         self.find_element(*<span style="color: #000000">self.password_loc).send_keys(value2)
+</span><span style="color: #008080">21</span>         time.sleep(<span style="color: #800080">20</span><span style="color: #000000">)          #手动输入验证码
+</span><span style="color: #008080">22</span>         self.find_element(*<span style="color: #000000">self.submit_loc).click()
+</span><span style="color: #008080">23</span>         time.sleep(<span style="color: #800080">5</span><span style="color: #000000">)           #等待5秒，登录后的页面加载完成
+</span><span style="color: #008080">24</span> 
+<span style="color: #008080">25</span> <span style="color: #000000">    def get_username(self):
+</span><span style="color: #008080">26</span>         <span style="color: #0000ff">return</span> self.find_element(*self.username_top).text</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px">test_login.py</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #000000">import unittest
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">from</span><span style="color: #000000"> selenium import webdriver
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">from</span><span style="color: #000000"> seleniumframework.PO.login_page import LoginPage
+</span><span style="color: #008080"> 4</span> <span style="color: #000000">import time
+</span><span style="color: #008080"> 5</span> 
+<span style="color: #008080"> 6</span> <span style="color: #0000ff">class</span><span style="color: #000000"> TestBaiduLogin(unittest.TestCase):
+</span><span style="color: #008080"> 7</span>     <span style="color: #800000">"""</span><span style="color: #800000">UI自动化登录</span><span style="color: #800000">"""</span>
+<span style="color: #008080"> 8</span> <span style="color: #000000">    def setUp(self):
+</span><span style="color: #008080"> 9</span>         self.url = <span style="color: #800000">"</span><span style="color: #800000">http://www.baidu.com</span><span style="color: #800000">"</span>
+<span style="color: #008080">10</span>         self.driver =<span style="color: #000000"> webdriver.Firefox()
+</span><span style="color: #008080">11</span>         self.driver.implicitly_wait(<span style="color: #800080">20</span><span style="color: #000000">)
+</span><span style="color: #008080">12</span>         # self.verificationErrors =<span style="color: #000000"> []
+</span><span style="color: #008080">13</span> 
+<span style="color: #008080">14</span> <span style="color: #000000">    def tearDown(self):
+</span><span style="color: #008080">15</span>         time.sleep(<span style="color: #800080">5</span><span style="color: #000000">)
+</span><span style="color: #008080">16</span> <span style="color: #000000">        self.driver.quit()
+</span><span style="color: #008080">17</span> <span style="color: #000000">        # self.assertEqual([],self.verificationErrors)
+</span><span style="color: #008080">18</span> 
+<span style="color: #008080">19</span> <span style="color: #000000">    def test_login(self):
+</span><span style="color: #008080">20</span>         <span style="color: #800000">"""</span><span style="color: #800000">百度登录</span><span style="color: #800000">"""</span>
+<span style="color: #008080">21</span>         sp =<span style="color: #000000"> LoginPage(self.driver)
+</span><span style="color: #008080">22</span> <span style="color: #000000">        sp.open(self.url)
+</span><span style="color: #008080">23</span> <span style="color: #000000">        sp.click_link()
+</span><span style="color: #008080">24</span>         sp.run_case(<span style="color: #800000">"</span><span style="color: #800000">hanxiaobei</span><span style="color: #800000">"</span>,<span style="color: #800000">"</span><span style="color: #800000">xxxxxxx</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080">25</span>         self.assertEqual(sp.get_username(),<span style="color: #800000">"</span><span style="color: #800000">hanxiaobei</span><span style="color: #800000">"</span>,msg=<span style="color: #800000">"</span><span style="color: #800000">验证失败！</span><span style="color: #800000">"</span>)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px">main.py 运行的主入口</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #000000">import unittest
+</span><span style="color: #008080"> 2</span> <span style="color: #000000">import HTMLTestRunner
+</span><span style="color: #008080"> 3</span> 
+<span style="color: #008080"> 4</span> <span style="color: #000000">#相对路径
+</span><span style="color: #008080"> 5</span> testcase_path = <span style="color: #800000">"</span><span style="color: #800000">.\\testcase</span><span style="color: #800000">"</span>
+<span style="color: #008080"> 6</span> report_path = <span style="color: #800000">"</span><span style="color: #800000">.\\report\\report.html</span><span style="color: #800000">"</span>
+<span style="color: #008080"> 7</span> <span style="color: #000000">def creat_suite():
+</span><span style="color: #008080"> 8</span>     uit =<span style="color: #000000"> unittest.TestSuite()
+</span><span style="color: #008080"> 9</span>     discover = unittest.defaultTestLoader.discover(testcase_path,pattern=<span style="color: #800000">"</span><span style="color: #800000">test_*.py</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080">10</span>     <span style="color: #0000ff">for</span> test_suite <span style="color: #0000ff">in</span><span style="color: #000000"> discover:
+</span><span style="color: #008080">11</span> <span style="color: #000000">        # print(test_suite)
+</span><span style="color: #008080">12</span>         <span style="color: #0000ff">for</span> test_case <span style="color: #0000ff">in</span><span style="color: #000000"> test_suite:
+</span><span style="color: #008080">13</span> <span style="color: #000000">            uit.addTest(test_case)
+</span><span style="color: #008080">14</span>     <span style="color: #0000ff">return</span><span style="color: #000000"> uit
+</span><span style="color: #008080">15</span> 
+<span style="color: #008080">16</span> suite =<span style="color: #000000"> creat_suite()
+</span><span style="color: #008080">17</span> fp = open(report_path,<span style="color: #800000">"</span><span style="color: #800000">wb</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080">18</span> runner = HTMLTestRunner.HTMLTestRunner(stream=fp,title=<span style="color: #800000">"</span><span style="color: #800000">测试结果</span><span style="color: #800000">"</span>,description=<span style="color: #800000">"</span><span style="color: #800000">测试搜索结果</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080">19</span> <span style="color: #000000">runner.run(suite)
+</span><span style="color: #008080">20</span> fp.close()</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px">解决报告命名的问题：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080">1</span> now = time.strftime(<span style="color: #800000">"</span><span style="color: #800000">%Y-%m-%d-%H-%M-%S</span><span style="color: #800000">"</span><span style="color: #000000">,time.localtime(time.time()))
+</span><span style="color: #008080">2</span> print(now)</pre>
+<pre>3 report_path = ".\\report\\"+now+"report.html"</pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px">测试报告截图：</span></p>
+<p><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/808721-20170424093512959-723137558.png" alt=""></p>
+<p>&nbsp;</p>
+<p><span style="font-size: 15px">search_page.py</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #0000ff">from</span><span style="color: #000000"> selenium.webdriver.common.by import By
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">from</span><span style="color: #000000"> seleniumframework.PO import base_page
+</span><span style="color: #008080"> 3</span> 
+<span style="color: #008080"> 4</span> <span style="color: #000000">#继承base后既可以调用base的方法也可自己添加新的方法
+</span><span style="color: #008080"> 5</span> <span style="color: #0000ff">class</span><span style="color: #000000"> SearchPage(base_page.Action):
+</span><span style="color: #008080"> 6</span> 
+<span style="color: #008080"> 7</span> <span style="color: #000000">    #通过id进行定位元素
+</span><span style="color: #008080"> 8</span>     search_loc = (By.ID,<span style="color: #800000">"</span><span style="color: #800000">kw</span><span style="color: #800000">"</span><span style="color: #000000">)
+</span><span style="color: #008080"> 9</span> 
+<span style="color: #008080">10</span> <span style="color: #000000">    def run_case(self,value):
+</span><span style="color: #008080">11</span> <span style="color: #000000">        #第一种利用原生的send_keys方法
+</span><span style="color: #008080">12</span>         self.find_element(*<span style="color: #000000">self.search_loc).send_keys(value)
+</span><span style="color: #008080">13</span> 
+<span style="color: #008080">14</span> <span style="color: #000000">        #第二种利用二次封装的send_keys方法
+</span><span style="color: #008080">15</span>         # self.send_keys(self.search_loc,value)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p><span style="font-size: 15px">test_search.py</span></p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008080"> 1</span> <span style="color: #000000">import unittest
+</span><span style="color: #008080"> 2</span> <span style="color: #0000ff">from</span><span style="color: #000000"> selenium import webdriver
+</span><span style="color: #008080"> 3</span> <span style="color: #0000ff">from</span><span style="color: #000000"> seleniumframework.PO.search_page import SearchPage
+</span><span style="color: #008080"> 4</span> <span style="color: #000000">import time
+</span><span style="color: #008080"> 5</span> 
+<span style="color: #008080"> 6</span> <span style="color: #0000ff">class</span><span style="color: #000000"> TestBaiduSearch(unittest.TestCase):
+</span><span style="color: #008080"> 7</span>     <span style="color: #800000">"""</span><span style="color: #800000">UI自动化搜索</span><span style="color: #800000">"""</span>
+<span style="color: #008080"> 8</span> <span style="color: #000000">    def setUp(self):
+</span><span style="color: #008080"> 9</span>         self.url = <span style="color: #800000">"</span><span style="color: #800000">http://www.baidu.com</span><span style="color: #800000">"</span>
+<span style="color: #008080">10</span>         self.driver =<span style="color: #000000"> webdriver.Firefox()
+</span><span style="color: #008080">11</span>         self.driver.implicitly_wait(<span style="color: #800080">20</span><span style="color: #000000">)
+</span><span style="color: #008080">12</span>         self.verificationErrors =<span style="color: #000000"> []
+</span><span style="color: #008080">13</span> 
+<span style="color: #008080">14</span> <span style="color: #000000">    def tearDown(self):
+</span><span style="color: #008080">15</span>         time.sleep(<span style="color: #800080">5</span><span style="color: #000000">)
+</span><span style="color: #008080">16</span> <span style="color: #000000">        self.driver.quit()
+</span><span style="color: #008080">17</span> <span style="color: #000000">        self.assertEqual([],self.verificationErrors)
+</span><span style="color: #008080">18</span> 
+<span style="color: #008080">19</span> <span style="color: #000000">    def test_search(self):
+</span><span style="color: #008080">20</span>         <span style="color: #800000">"""</span><span style="color: #800000">搜索测试关键字</span><span style="color: #800000">"""</span>
+<span style="color: #008080">21</span>         sp =<span style="color: #000000"> SearchPage(self.driver)
+</span><span style="color: #008080">22</span> <span style="color: #000000">        sp.open(self.url)
+</span><span style="color: #008080">23</span>         sp.run_case(<span style="color: #800000">"</span><span style="color: #800000">测试</span><span style="color: #800000">"</span>)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/hanxiaobei/category/941169.html" target="_blank">Selenium</a></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6755329,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;6b9035ec-9456-e511-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/hanxiaobei/" target="_blank"><img src="./Selenium基于Python web自动化测试框架 -- PO - 韩小北 - 博客园_files/20151028095648.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/hanxiaobei/">韩小北</a><br>
+            <a href="http://home.cnblogs.com/u/hanxiaobei/followees">关注 - 6</a><br>
+            <a href="http://home.cnblogs.com/u/hanxiaobei/followers">粉丝 - 57</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;6b9035ec-9456-e511-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6755329,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6755329,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/hanxiaobei/p/6754731.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/hanxiaobei/p/6754731.html" title="发布于2017-04-23 23:51">Selenium基于Python web自动化基础二 -- 免登录、等待及unittest单元测试框架</a><br><a href="http://www.cnblogs.com/hanxiaobei/p/6758063.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/hanxiaobei/p/6758063.html" title="发布于2017-04-24 17:44">Appium环境部署</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2017-04-24 09:39</span> <a href="http://www.cnblogs.com/hanxiaobei/">韩小北</a> 阅读(<span id="post_view_count">2089</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6755329" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/hanxiaobei/p/6755329.html#" onclick="AddToWz(6755329);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=false,cb_blogId=263536,cb_entryId=6755329,cb_blogApp=currentBlogApp,cb_blogUserGuid='6b9035ec-9456-e511-b908-9dcfd8948a71',cb_entryCreatedDate='2017/4/24 9:39:00';loadViewCount(cb_entryId);var cb_postType=1;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/hanxiaobei/p/6755329.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/hanxiaobei/p/6755329.html#top">返回顶部</a></div>
+<div id="comment_form_container">（评论功能已被禁用）</div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="cnblogs_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="https://news.cnblogs.com/n/603501/" target="_blank">苹果为员工办诊所：招聘医生、运动教练、营养师、护士等职位</a><br> ·  <a href="https://news.cnblogs.com/n/603500/" target="_blank">不局限语言翻译 亚马逊新专利将能翻译口音</a><br> ·  <a href="https://news.cnblogs.com/n/603499/" target="_blank">阿里巴巴开源Sentinel进一步完善Dubbo生态</a><br> ·  <a href="https://news.cnblogs.com/n/603472/" target="_blank">在拼多多只花了20元，我买到了支持OPPO闪充的充电器？</a><br> ·  <a href="https://news.cnblogs.com/n/603498/" target="_blank">Handshake向GNOME基金会捐赠40万美元</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="cnblogs_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/603279/" target="_blank">成为一个有目标的学习者</a><br> ·  <a href="http://kb.cnblogs.com/page/602903/" target="_blank">历史转折中的“杭派工程师”</a><br> ·  <a href="http://kb.cnblogs.com/page/602573/" target="_blank">如何提高代码质量？</a><br> ·  <a href="http://kb.cnblogs.com/page/602486/" target="_blank">在腾讯的八年，我的职业思考</a><br> ·  <a href="http://kb.cnblogs.com/page/602163/" target="_blank">为什么我离开了管理岗位</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="https://home.cnblogs.com/u/hanxiaobei/">韩小北</a><br>园龄：<a href="https://home.cnblogs.com/u/hanxiaobei/" title="入园时间：2015-09-09">2年10个月</a><br>粉丝：<a href="https://home.cnblogs.com/u/hanxiaobei/followers/">57</a><br>关注：<a href="https://home.cnblogs.com/u/hanxiaobei/followees/">6</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;6b9035ec-9456-e511-b908-9dcfd8948a71&#39;)">+加关注</a></div><script>getFollowStatus('6b9035ec-9456-e511-b908-9dcfd8948a71')</script></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/07/01&#39;);return false;">&lt;</a></td><td align="center">2018年8月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2018/09/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td class="CalOtherMonthDay" align="center">31</td><td align="center">1</td><td align="center">2</td><td class="CalTodayDay" align="center">3</td><td class="CalWeekendDay" align="center">4</td></tr><tr><td class="CalWeekendDay" align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td class="CalWeekendDay" align="center">11</td></tr><tr><td class="CalWeekendDay" align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td class="CalWeekendDay" align="center">18</td></tr><tr><td class="CalWeekendDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td class="CalWeekendDay" align="center">25</td></tr><tr><td class="CalWeekendDay" align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td></tr><tr><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+
+</div>
+</div>
+
+</div><div id="sidebar_toptags" class="sidebar-block"></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/hanxiaobei/category/941170.html">Appium(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="https://www.cnblogs.com/hanxiaobei/category/1151467.html">Django(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="https://www.cnblogs.com/hanxiaobei/category/820907.html">python基础(10)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="https://www.cnblogs.com/hanxiaobei/category/941169.html">Selenium(8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="https://www.cnblogs.com/hanxiaobei/category/843669.html">安全测试(3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="https://www.cnblogs.com/hanxiaobei/category/1016534.html">工具使用(6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="https://www.cnblogs.com/hanxiaobei/category/1211565.html">功能测试及测试方法(2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="https://www.cnblogs.com/hanxiaobei/category/1183898.html">简易小脚本(5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="https://www.cnblogs.com/hanxiaobei/category/1202826.html">接口测试(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="https://www.cnblogs.com/hanxiaobei/category/1263252.html">随笔(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="https://www.cnblogs.com/hanxiaobei/category/795786.html">性能测试(22)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_articlearchive" class="catListArticleArchive sidebar-block">
+<h3 class="catListTitle">文章档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="https://www.cnblogs.com/hanxiaobei/archives/2016/06.html" rel="nofollow">2016年6月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links779267" class="catList sidebar-block">
+<h3 class="catListTitle">相关链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_2_Link_0" href="https://www.cnblogs.com/alex3714/" rel="nofollow">Alex</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_1" href="http://www.runoob.com/" rel="nofollow">菜鸟教程</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_2" href="https://www.cnblogs.com/fnng/" rel="nofollow">虫师</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_3" href="http://xqtesting.blog.51cto.com/" rel="nofollow">小强</a> </li>
+
+<li><a id="CatList_LinkList_2_Link_4" href="https://www.cnblogs.com/nbkhic" rel="nofollow">乙醇</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/hanxiaobei/p/6108677.html">1. Selenium基于Python 进行 web 自动化测试(27848)</a></li><li><a href="https://www.cnblogs.com/hanxiaobei/p/5515404.html">2. Java线程及Jvm监控工具(17539)</a></li><li><a href="https://www.cnblogs.com/hanxiaobei/p/5603491.html">3. 渗透测试工具Nmap从初级到高级(9999)</a></li><li><a href="https://www.cnblogs.com/hanxiaobei/p/5540756.html">4. JProfiler 9.1.1部署及使用(7183)</a></li><li><a href="https://www.cnblogs.com/hanxiaobei/p/6771700.html">5. Appium基于Python APP自动化测试框架 -- PO(6583)</a></li><li><a href="https://www.cnblogs.com/hanxiaobei/p/6613968.html">6. python自动化--接口请求及封装(5566)</a></li><li><a href="https://www.cnblogs.com/hanxiaobei/p/5249278.html">7. LR常用函数整理(5128)</a></li><li><a href="https://www.cnblogs.com/hanxiaobei/p/5603629.html">8. 从信息收集到入侵提权(渗透测试基础总结)(4563)</a></li><li><a href="https://www.cnblogs.com/hanxiaobei/p/6978057.html">9. PyCharm使用指南及更改Python pip源为国内豆瓣(4049)</a></li><li><a href="https://www.cnblogs.com/hanxiaobei/p/5371301.html">10. Jmeter接口测试---get和post及解决乱码问题(2365)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2018 韩小北
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

@@ -1,0 +1,7 @@
+In Python you can digit
+In Python you can string
+In Python you can set
+In Python you can list
+In Python you can dict
+In Python you can list
+In Python you can tuple
